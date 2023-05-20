@@ -2,14 +2,14 @@ package org.example.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.MerchantDto;
+import org.example.dto.ResponseDto;
+import org.example.infrastructure.CodedException;
 import org.example.mapper.MerchantMapper;
 import org.example.services.impl.MerchantServiceImpl;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(MerchantController.BASE)
@@ -22,8 +22,12 @@ public class MerchantController {
     private final MerchantMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<MerchantDto>> getAllMerchants() {
-        return ResponseEntity.ok(mapper.toDtos(merchantService.findAllMerchants()));
+    public ResponseDto<List<MerchantDto>> getAllMerchants() {
+        return ResponseDto.response(mapper.toDtos(merchantService.findAllMerchants()));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseDto<MerchantDto> deleteMerchant(@PathVariable("id") String id) throws CodedException {
+        return ResponseDto.response(mapper.toDto(merchantService.deleteMerchant(UUID.fromString(id))));
+    }
 }
