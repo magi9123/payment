@@ -1,6 +1,6 @@
 package org.example.services.impl;
 
-import org.example.infrastructure.CodedException;
+import org.example.infrastructure.exception.CodedException;
 import org.example.model.Merchant;
 
 import java.util.List;

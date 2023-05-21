@@ -1,7 +1,6 @@
 package org.example.model;
 
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class Merchant {
 
     @Id
-    @Type(type="uuid-char")
     @GeneratedValue
     private UUID id;
 

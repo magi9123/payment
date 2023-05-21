@@ -1,8 +1,8 @@
 package org.example.services;
 
 import lombok.RequiredArgsConstructor;
-import org.example.infrastructure.CodedException;
-import org.example.infrastructure.ErrorCode;
+import org.example.infrastructure.exception.CodedException;
+import org.example.infrastructure.exception.ErrorCode;
 import org.example.model.Merchant;
 import org.example.model.Transaction;
 import org.example.repositories.MerchantRepository;
