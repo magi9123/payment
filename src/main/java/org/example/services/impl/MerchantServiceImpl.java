@@ -10,5 +10,7 @@ public interface MerchantServiceImpl {
 
     List<Merchant> findAllMerchants();
 
+    Merchant updateMerchant(Merchant entity) throws CodedException;
+
     Merchant deleteMerchant(UUID id) throws CodedException;
 }

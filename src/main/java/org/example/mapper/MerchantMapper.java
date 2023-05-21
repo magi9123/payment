@@ -22,4 +22,9 @@ public class MerchantMapper {
     public List<MerchantDto> toDtos(List<Merchant> merchantList) {
         return merchantList.stream().map(this::toDto).collect(Collectors.toList());
     }
+
+    public Merchant toEntity(MerchantDto merchantDto) {
+        return mapper.convertValue(merchantDto, Merchant.class);
+    }
+
 }
