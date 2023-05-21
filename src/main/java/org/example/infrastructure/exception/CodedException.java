@@ -1,4 +1,4 @@
-package org.example.infrastructure;
+package org.example.infrastructure.exception;
 
 import lombok.Getter;
 import lombok.Setter;
