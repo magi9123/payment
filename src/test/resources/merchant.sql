@@ -26,8 +26,4 @@ CREATE TABLE IF NOT EXISTS transaction
 INSERT INTO merchant(id, name, description, email, status, total_Transaction_Sum)
 VALUES ('d1311ea7-9e43-4847-9529-bcee4031dc7e', 'Maggie', 'for test', 'maggie@gmail.com', '0', 1434324123.8787),
        ('dd1afbfd-c15c-4712-a2d2-7006ab50f3fb', 'Siri', 'testing', 'siri@gmail.com', '0', 4343134123213.7767),
-       (random_uuid(), 'Stefan', 'testing fire system', 'peter@gmail.com', '1', 20.10);
-
-INSERT INTO transaction(uuid, amount, status, customer_email, customer_phone, reference_id)
-VALUES (random_uuid(), 321312.00, 'APPROVED', 'someemail@gmail.com', '08776567567',
-        'd1311ea7-9e43-4847-9529-bcee4031dc7e')
+       ('dd1afbfd-c15c-4712-5643-7006ab50f3fb', 'Stefan', 'testing fire system', 'peter@gmail.com', '1', 20.10);

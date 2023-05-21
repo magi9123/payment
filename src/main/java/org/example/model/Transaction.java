@@ -1,6 +1,7 @@
 package org.example.model;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,8 +14,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Transaction {
+
     @Id
-    @GeneratedValue(generator = "uuid4")
+    @Type(type="uuid-char")
+    @GeneratedValue
     private UUID uuid;
 
     @Column(nullable = false)

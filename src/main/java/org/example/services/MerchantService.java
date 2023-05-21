@@ -35,7 +35,7 @@ public class MerchantService implements MerchantServiceImpl {
     }
 
     private void checkHasRelatedTransaction(UUID id, List<Transaction> merchant) throws CodedException {
-        if (merchant.isEmpty()) {
+        if (!merchant.isEmpty()) {
             throw new CodedException(ErrorCode.MERSHANT_TRANSACTION, id);
         }
     }
