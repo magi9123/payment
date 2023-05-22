@@ -1,5 +1,6 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,8 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"transactionList"})
+@Table(name = "merchant")
 public class Merchant {
 
     @Id
@@ -34,6 +36,7 @@ public class Merchant {
     @Column
     private BigDecimal totalTransactionSum;
 
-    @OneToMany(mappedBy = "uuid")
+    @OneToMany(mappedBy = "referenceId")
+    @JsonManagedReference
     private List<Transaction> transactionList;
 }

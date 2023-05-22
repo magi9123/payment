@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDto {
-    private String uuid;
+    private String id;
     private BigDecimal amount;
     private TransactionStatus status;
     private String customerEmail;
