@@ -9,6 +9,7 @@ import org.example.model.TransactionStatus;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,5 +21,6 @@ public class TransactionDto {
     private TransactionStatus status;
     private String customerEmail;
     private String customerPhone;
+    private LocalDateTime createAt;
     private Merchant referenceId;
 }
