@@ -14,6 +14,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -59,8 +60,7 @@ class MerchantServiceTest {
         var merchant = merchantService.findAllMerchants().get(0);
 
         var transaction = new Transaction(UUID.randomUUID(), BigDecimal.valueOf(321312.00), TransactionStatus.APPROVED,
-                "someemail@gmail.com", "08776567567",
-                merchant);
+                "someemail@gmail.com", "08776567567", LocalDateTime.now(), merchant);
         transactionRepository.saveAndFlush(transaction);
 
         var exception = assertThrows(CodedException.class, () -> {

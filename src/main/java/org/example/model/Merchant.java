@@ -34,7 +34,6 @@ public class Merchant {
     @Column
     private BigDecimal totalTransactionSum;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "uuid")
+    @OneToMany(mappedBy = "uuid")
     private List<Transaction> transactionList;
 }

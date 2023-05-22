@@ -18,20 +18,23 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc(addFilters = false)
+@AutoConfigureMockMvc
 class MerchantControllerTest {
 
     public static final UUID ID = UUID.randomUUID();
 
     @Autowired
     MockMvc mockMvc;
+
+    @Autowired
+    MerchantController marchantController;
 
     @Autowired
     ObjectMapper mapper;
@@ -60,6 +63,26 @@ class MerchantControllerTest {
 
     @Test
     @WithMockUser
+    void shouldUpdateMerchant() throws Exception {
+        var merchant = MerchantTest.create(ID);
+        var merchantDto = MerchantDtoTest.create(ID);
+        when(merchantMapper.toEntity(any())).thenReturn(merchant);
+        when(merchantService.updateMerchant(merchant)).thenReturn(merchant);
+        when(merchantMapper.toDto(merchant)).thenReturn(merchantDto);
+        String json = mapper.writeValueAsString(merchantDto);
+
+        mockMvc.perform(put(MerchantController.BASE)
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.response").isNotEmpty())
+                .andExpect(jsonPath("$.response.name").value(merchant.getName()));
+        ;
+
+    }
+
+    @Test
+    @WithMockUser
     void shouldDeleteMerchant() throws Exception {
         var merchant = MerchantDtoTest.create(ID);
         when(merchantService.deleteMerchant(ID)).thenReturn(MerchantTest.create(ID));
@@ -70,6 +93,6 @@ class MerchantControllerTest {
                         .content(json)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.response[0]").value(merchant.getId()));
+                .andExpect(jsonPath("$.response.name").value(merchant.getName()));
     }
 }
