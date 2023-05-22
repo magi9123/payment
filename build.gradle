@@ -41,6 +41,8 @@ dependencies {
     implementation "org.hibernate:hibernate-jpamodelgen:${jpaModelVersion}"
     implementation "javax.xml.bind:jaxb-api:2.3.0"
     implementation "io.jsonwebtoken:jjwt:0.9.1"
+    implementation "commons-io:commons-io:2.11.0"
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:4.0.0"
 
     runtimeOnly "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
     runtimeOnly "org.postgresql:postgresql:${postgresVersion}"
@@ -51,5 +53,4 @@ dependencies {
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
 
     testRuntimeOnly "com.h2database:h2:${h2Version}"
-    testRuntimeOnly "net.bytebuddy:byte-buddy:1.12.9"
 }
