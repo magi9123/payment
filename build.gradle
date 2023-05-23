@@ -21,6 +21,7 @@ ext {
     postgresVersion = '42.5.0'
     lombokVersion = '8.0.1'
     jpaModelVersion = '5.6.12.Final'
+    jaxpVersion = '1.4.5'
 
     junitVersion = '5.9.1'
     mockitoVersion = '4.9.0'
@@ -42,7 +43,8 @@ dependencies {
     implementation "javax.xml.bind:jaxb-api:2.3.0"
     implementation "io.jsonwebtoken:jjwt:0.9.1"
     implementation "commons-io:commons-io:2.11.0"
-    implementation "jakarta.xml.bind:jakarta.xml.bind-api:4.0.0"
+
+    implementation "javax.xml.parsers:jaxp-api:${jaxpVersion}"
 
     runtimeOnly "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
     runtimeOnly "org.postgresql:postgresql:${postgresVersion}"
