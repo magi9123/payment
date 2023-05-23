@@ -1,7 +1,7 @@
 package org.example.xml;
 
+import lombok.Getter;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.math.BigDecimal;
@@ -12,6 +12,7 @@ import static org.example.xml.ElementXml.*;
 
 public class TransactionHandler extends DefaultHandler {
 
+    @Getter
     private TransactionsXml transactionsXml;
     private TransactionXml transactionXml;
 
@@ -59,6 +60,8 @@ public class TransactionHandler extends DefaultHandler {
             case BANK_ACCOUNT_SUM_MERCHANT:
                 elementValue = new StringBuilder();
                 break;
+            default:
+                break;
         }
     }
 
@@ -94,6 +97,8 @@ public class TransactionHandler extends DefaultHandler {
                 break;
             case BANK_ACCOUNT_SUM_MERCHANT:
                 latestArticle().getMerchant().setBankAccountSum(BigDecimal.valueOf(Double.parseDouble(elementValue.toString())));
+                break;
+            default:
                 break;
         }
     }
