@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<transactions>
+    <transaction id="bk101">
+        <amount>300</amount>
+        <type>1</type>
+        <customer id="1">
+            <customer_email>stef@gmail.com</customer_email>
+            <phone>0876545465</phone>
+            <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
+        </customer>
+        <merchant id="12">
+            <name>Alex</name>
+            <description>alex@gmail.com</description>
+            <merchant_email>alex@gmail.com</merchant_email>
+            <status>0</status>
+            <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
+        </merchant>
+    </transaction>
+</transactions>
