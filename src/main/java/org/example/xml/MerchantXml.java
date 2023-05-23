@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class MerchantXml {
+    private String uuid;
     private String name;
     private String description;
     private String email;

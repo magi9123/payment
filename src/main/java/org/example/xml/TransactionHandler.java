@@ -39,14 +39,13 @@ public class TransactionHandler extends DefaultHandler {
                 transactionsXml.setArticleList(new ArrayList<>());
                 break;
             case TRANSACTION:
-                transactionXml = new TransactionXml();
-                transactionsXml.getArticleList().add(transactionXml);
+                initTransaction(attributes);
                 break;
             case CUSTOMER:
                 transactionXml.setCustomer(new CustomerXml());
                 break;
             case MERCHANT:
-                transactionXml.setMerchant(new MerchantXml());
+                initMerchant(attributes);
                 break;
             case AMOUNT:
             case TYPE:
@@ -107,5 +106,16 @@ public class TransactionHandler extends DefaultHandler {
         List<TransactionXml> articleList = transactionsXml.getArticleList();
         int latestArticleIndex = articleList.size() - 1;
         return articleList.get(latestArticleIndex);
+    }
+
+    private void initMerchant(Attributes attributes) {
+        transactionXml.setMerchant(new MerchantXml());
+        transactionXml.getMerchant().setUuid(attributes.getValue(0));
+    }
+
+    private void initTransaction(Attributes attributes) {
+        transactionXml = new TransactionXml();
+        transactionsXml.getArticleList().add(transactionXml);
+        transactionXml.setUuid(attributes.getValue(0));
     }
 }

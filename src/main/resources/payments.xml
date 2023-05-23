@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <transactions>
-    <transaction id="bk101">
+    <transaction id="cc7baf88-353c-4249-a74f-c2e46345ea52">
         <amount>300</amount>
         <type>1</type>
         <customer id="1">
@@ -16,7 +16,7 @@
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
-    <transaction id="bk102">
+    <transaction id="cc7baf88-353c-4249-a74f-c2e45645ea52">
         <amount>0</amount>
         <type>1</type>
         <customer id="2">
@@ -24,7 +24,7 @@
             <phone>087d6545465</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
-        <merchant id="12">
+        <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea52">
             <name>Alex</name>
             <description>alex@</description>
             <merchant_email>alex@gmail.com</merchant_email>

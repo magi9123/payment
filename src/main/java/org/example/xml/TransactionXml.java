@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 public class TransactionXml {
+    private String uuid;
     private BigDecimal amount;
     private int type;
     private CustomerXml customer;
