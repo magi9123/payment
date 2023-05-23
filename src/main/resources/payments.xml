@@ -16,4 +16,20 @@
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
+    <transaction id="bk102">
+        <amount>0</amount>
+        <type>1</type>
+        <customer id="2">
+            <customer_email>katq@gmail.com</customer_email>
+            <phone>087d6545465</phone>
+            <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
+        </customer>
+        <merchant id="12">
+            <name>Alex</name>
+            <description>alex@</description>
+            <merchant_email>alex@gmail.com</merchant_email>
+            <status>0</status>
+            <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
+        </merchant>
+    </transaction>
 </transactions>

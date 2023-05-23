@@ -10,6 +10,4 @@ import java.util.List;
 
 public interface TransactionService {
     List<Transaction> findAllTransactions();
-
-    void importFromXml(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException;
 }
