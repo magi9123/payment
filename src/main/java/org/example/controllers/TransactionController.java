@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.ResponseDto;
 import org.example.dto.TransactionDto;
 import org.example.mapper.TransactionMapper;
-import org.example.services.impl.TransactionServiceImpl;
+import org.example.services.FileService;
+import org.example.services.TransactionService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,8 @@ public class TransactionController {
 
     public static final String BASE = "/api/payment_system/transaction";
 
-    private final TransactionServiceImpl transactionService;
+    private final TransactionService transactionService;
+    private final FileService fileService;
     private final TransactionMapper mapper;
 
     @GetMapping
@@ -33,7 +35,7 @@ public class TransactionController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseDto<List<TransactionDto>> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
-        transactionService.importFromXml(file.getInputStream());
+        fileService.importFromXml(file.getInputStream());
         return ResponseDto.response(List.of(new TransactionDto()));
     }
 }
