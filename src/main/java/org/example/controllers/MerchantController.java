@@ -5,7 +5,7 @@ import org.example.dto.MerchantDto;
 import org.example.dto.ResponseDto;
 import org.example.infrastructure.exception.CodedException;
 import org.example.mapper.MerchantMapper;
-import org.example.services.impl.MerchantServiceImpl;
+import org.example.services.MerchantService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class MerchantController {
 
     public static final String BASE = "/api/payment_system/merchant";
 
-    private final MerchantServiceImpl merchantService;
+    private final MerchantService merchantService;
     private final MerchantMapper mapper;
 
     @GetMapping

@@ -2,7 +2,7 @@ package org.example.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.mapper.MerchantMapper;
-import org.example.services.MerchantService;
+import org.example.services.impl.MerchantServiceImpl;
 import org.example.testtools.MerchantDtoTest;
 import org.example.testtools.MerchantTest;
 import org.hamcrest.Matchers;
@@ -43,13 +43,13 @@ class MerchantControllerTest {
     MerchantMapper merchantMapper;
 
     @MockBean
-    MerchantService merchantService;
+    MerchantServiceImpl merchantServiceImpl;
 
     @Test
     @WithMockUser
     void shouldGetAllMerchants() throws Exception {
         var merchantDtos = List.of(MerchantDtoTest.create(ID));
-        when(merchantService.findAllMerchants()).thenReturn(List.of(MerchantTest.create(ID)));
+        when(merchantServiceImpl.findAllMerchants()).thenReturn(List.of(MerchantTest.create(ID)));
         when(merchantMapper.toDtos(List.of(MerchantTest.create(ID)))).thenReturn(merchantDtos);
         String json = mapper.writeValueAsString(merchantDtos);
 
@@ -67,7 +67,7 @@ class MerchantControllerTest {
         var merchant = MerchantTest.create(ID);
         var merchantDto = MerchantDtoTest.create(ID);
         when(merchantMapper.toEntity(any())).thenReturn(merchant);
-        when(merchantService.updateMerchant(merchant)).thenReturn(merchant);
+        when(merchantServiceImpl.updateMerchant(merchant)).thenReturn(merchant);
         when(merchantMapper.toDto(merchant)).thenReturn(merchantDto);
         String json = mapper.writeValueAsString(merchantDto);
 
@@ -85,7 +85,7 @@ class MerchantControllerTest {
     @WithMockUser
     void shouldDeleteMerchant() throws Exception {
         var merchant = MerchantDtoTest.create(ID);
-        when(merchantService.deleteMerchant(ID)).thenReturn(MerchantTest.create(ID));
+        when(merchantServiceImpl.deleteMerchant(ID)).thenReturn(MerchantTest.create(ID));
         when(merchantMapper.toDto(MerchantTest.create(ID))).thenReturn(merchant);
         String json = mapper.writeValueAsString(merchant);
 

@@ -3,7 +3,7 @@ package org.example.controllers;
 import lombok.RequiredArgsConstructor;
 import org.example.infrastructure.security.JwtRequest;
 import org.example.infrastructure.security.JwtResponse;
-import org.example.services.impl.AuthenticationServiceImpl;
+import org.example.services.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class JwtAuthenticationController {
 
     public static final String AUTHENTICATE = "/authenticate";
 
-    private final AuthenticationServiceImpl authenticationService;
+    private final AuthenticationService authenticationService;
 
     @PostMapping(value = AUTHENTICATE)
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
