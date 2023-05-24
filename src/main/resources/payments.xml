@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <transactions>
     <transaction id="cc7baf88-353c-4249-a74f-c2e46345ea52">
-        <amount>300</amount>
+        <amount>0</amount>
         <type>1</type>
         <customer id="1">
             <customer_email>stef@gmail.com</customer_email>
-            <phone>0876545465</phone>
+            <phone>08765454658</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
-        <merchant id="12">
-            <name>Alex</name>
-            <description>alex@gmail.com</description>
-            <merchant_email>alex@gmail.com</merchant_email>
+        <merchant id="ab54d908-9887-4570-b4e7-e8580c6bd71f">
+            <name>Jesika</name>
+            <description>one transaction with type 'reversal'</description>
+            <merchant_email>jesika@gmail.com</merchant_email>
             <status>0</status>
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
-    <transaction id="cc7baf88-353c-4249-a74f-c2e45645ea52">
-        <amount>0</amount>
-        <type>1</type>
+    <transaction id="3f45ba9f-09c6-4508-8ae9-99785249d21f">
+        <amount>400</amount>
+        <type>0</type>
         <customer id="2">
             <customer_email>katq@gmail.com</customer_email>
             <phone>087d6545465</phone>
@@ -26,10 +26,58 @@
         </customer>
         <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea52">
             <name>Alex</name>
-            <description>alex@</description>
+            <description>one 'approved' with 400,one 'refund' with 200</description>
             <merchant_email>alex@gmail.com</merchant_email>
             <status>0</status>
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
+        </merchant>
+    </transaction>
+    <transaction id="cc7baf88-386c-4249-a74f-c2e45645ea52">
+        <amount>200</amount>
+        <type>2</type>
+        <customer id="2">
+            <customer_email>katq@gmail.com</customer_email>
+            <phone>087d6545465</phone>
+            <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
+        </customer>
+        <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea52">
+            <name>Alex</name>
+            <description>one 'approved' with 400,one 'refund' with 200</description>
+            <merchant_email>alex@gmail.com</merchant_email>
+            <status>0</status>
+            <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
+        </merchant>
+    </transaction>
+    <transaction id="cc7baf88-386c-4249-a74f-c2e45645ea52">
+        <amount>0</amount>
+        <type>0</type>
+        <customer id="2">
+            <customer_email>katq@gmail.com</customer_email>
+            <phone>08796545465</phone>
+            <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
+        </customer>
+        <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea72">
+            <name>InactivUser</name>
+            <description>this user and elated transaction will be not saved to database</description>
+            <merchant_email>inactivUser@gmail.com</merchant_email>
+            <status>1</status>
+            <bankAccountSumMerchant>8000.00</bankAccountSumMerchant>
+        </merchant>
+    </transaction>
+    <transaction id="cc7baf88-386c-4249-a74f-c2e45645ea52">
+        <amount>0</amount>
+        <type>2</type>
+        <customer id="2">
+            <customer_email>katq@gmail.com</customer_email>
+            <phone>08796545465</phone>
+            <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
+        </customer>
+        <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea72">
+            <name>InactivUser</name>
+            <description>this user and elated transaction will be not saved to database</description>
+            <merchant_email>inactivUser@gmail.com</merchant_email>
+            <status>1</status>
+            <bankAccountSumMerchant>8000.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
 </transactions>

@@ -36,7 +36,7 @@ public class Merchant {
     @Column
     private BigDecimal totalTransactionSum;
 
-    @OneToMany(mappedBy = "referenceId")
+    @OneToMany(mappedBy = "referenceId", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Transaction> transactionList;
 }
