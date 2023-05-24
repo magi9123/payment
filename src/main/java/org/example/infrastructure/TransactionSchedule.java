@@ -18,7 +18,7 @@ public class TransactionSchedule {
 
     private final TransactionRepository transactionRepository;
 
-    @Scheduled(fixedDelay = 60 * 60 * 100)
+    @Scheduled(cron = "0 0 0/1 * * ?")
     public void deleteTransaction() {
         var transactions = transactionRepository.findAll();
 
