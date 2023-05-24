@@ -21,7 +21,7 @@ import static org.example.model.TransactionStatus.*;
 public class TransactionXmlSave {
     private final MerchantRepository merchantRepository;
 
-    public void save(TransactionsXml transactionsXml) {
+    public void saveXml(TransactionsXml transactionsXml) {
 
         HashMap<UUID, List<TransactionXml>> merchantTransactions = unionTransactionsByMerchant(transactionsXml);
 
