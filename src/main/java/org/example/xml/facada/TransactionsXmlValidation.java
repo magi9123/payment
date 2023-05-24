@@ -35,8 +35,8 @@ public class TransactionsXmlValidation {
 
     private void transactionHasAmount(TransactionXml transaction) {
         if (transaction.getAmount().signum() <= 0) {
-            transaction.setType(TransactionStatus.ERROR.ordinal());
-            log.error("Transaction is invalid");
+            transaction.setType(TransactionStatus.REVERSED.ordinal());
+            log.error("Transaction is reversed");
         }
     }
 
