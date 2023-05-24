@@ -31,19 +31,19 @@ class MerchantControllerTest {
     public static final UUID ID = UUID.randomUUID();
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Autowired
-    MerchantController marchantController;
+    private MerchantController marchantController;
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     @MockBean
-    MerchantMapper merchantMapper;
+    private MerchantMapper merchantMapper;
 
     @MockBean
-    MerchantServiceImpl merchantServiceImpl;
+    private MerchantServiceImpl merchantServiceImpl;
 
     @Test
     @WithMockUser
@@ -77,8 +77,6 @@ class MerchantControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.response").isNotEmpty())
                 .andExpect(jsonPath("$.response.name").value(merchant.getName()));
-        ;
-
     }
 
     @Test

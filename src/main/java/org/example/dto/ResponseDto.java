@@ -15,6 +15,10 @@ public class ResponseDto<T> {
         return new ResponseDto<>(content, null);
     }
 
+    public static ResponseDto<Void> response() {
+        return new ResponseDto<>(null, null);
+    }
+
     public static ResponseDto<Void> fail(String code, String message) {
         return new ResponseDto<>(null, new Error(code, message));
     }

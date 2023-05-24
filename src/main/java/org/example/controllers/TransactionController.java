@@ -34,8 +34,8 @@ public class TransactionController {
 
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseDto<List<TransactionDto>> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
+    public ResponseDto<Void> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
         fileService.importFromXml(file.getInputStream());
-        return ResponseDto.response(List.of(new TransactionDto()));
+        return ResponseDto.response();
     }
 }
