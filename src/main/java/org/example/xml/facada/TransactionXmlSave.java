@@ -6,6 +6,7 @@ import org.example.model.MerchantStatus;
 import org.example.model.Transaction;
 import org.example.model.TransactionStatus;
 import org.example.repositories.MerchantRepository;
+import org.example.xml.parser.MerchantXml;
 import org.example.xml.parser.TransactionXml;
 import org.example.xml.parser.TransactionsXml;
 import org.springframework.stereotype.Component;
@@ -23,53 +24,52 @@ public class TransactionXmlSave {
 
     public void saveXml(TransactionsXml transactionsXml) {
 
-        HashMap<UUID, List<TransactionXml>> merchantTransactions = unionTransactionsByMerchant(transactionsXml);
+        HashMap<UUID, List<TransactionXml>> merchantTransactionsList = unionTransactionsByMerchant(transactionsXml);
 
-        for (var merchant : merchantTransactions.entrySet()) {
+        for (var merchantTransactions : merchantTransactionsList.entrySet()) {
 
-            var merchantStatus = merchant.getValue().get(0).getMerchant().getStatus();
-            if (isMerchantActive(merchantStatus)) {
+            var merchantXml = merchantTransactions.getValue().get(0).getMerchant();
+            if (isMerchantActive(merchantXml.getStatus())) {
 
-                Merchant merchantEntity = createMerchantEntity(merchant);
+                Merchant merchant = createMerchantEntity(merchantXml);
 
-                BigDecimal merchantBankAccountStatement = merchant.getValue().get(0).getMerchant().getBankAccountSum();
+                BigDecimal merchantBankAccountStatement = merchantXml.getBankAccountSum();
 
                 var transactionList = new ArrayList<Transaction>();
-                for (var transaction : merchant.getValue()) {
+                for (var transaction : merchantTransactions.getValue()) {
 
-                    var transactionStatus = TransactionStatus.checkIfExist(transaction.getType()).name();
+                    TransactionStatus transactionStatus = TransactionStatus.checkIfExist(transaction.getType());
                     switch (transactionStatus) {
-                        case "APPROVED":
+                        case APPROVED:
                             merchantBankAccountStatement = calculateAccountsBalanceForApproved(merchantBankAccountStatement, transaction);
-                            addTransactionToMerchant(transaction, TransactionStatus.APPROVED, merchantEntity, transactionList);
+                            addTransactionToMerchant(transaction, TransactionStatus.APPROVED, merchant, transactionList);
                             break;
-                        case "REFUNDED":
+                        case REFUNDED:
                             merchantBankAccountStatement = calculateAccountsBalanceForRefunded(merchantBankAccountStatement, transaction);
-                            addTransactionToMerchant(transaction, REFUNDED, merchantEntity, transactionList);
+                            addTransactionToMerchant(transaction, REFUNDED, merchant, transactionList);
                             break;
-                        case "REVERSED":
-                            addTransactionToMerchant(transaction, TransactionStatus.REVERSED, merchantEntity, transactionList);
+                        case REVERSED:
+                            addTransactionToMerchant(transaction, TransactionStatus.REVERSED, merchant, transactionList);
                             break;
-                        case "ERROR":
-                            addTransactionToMerchant(transaction, TransactionStatus.ERROR, merchantEntity, transactionList);
+                        case ERROR:
+                            addTransactionToMerchant(transaction, TransactionStatus.ERROR, merchant, transactionList);
                             break;
                         default:
                             break;
                     }
                 }
 
-                merchantEntity.setTotalTransactionSum(merchantBankAccountStatement);
-                merchantEntity.setTransactionList(transactionList);
-                merchantRepository.save(merchantEntity);
+                merchant.setTotalTransactionSum(merchantBankAccountStatement);
+                merchant.setTransactionList(transactionList);
+                merchantRepository.save(merchant);
 
             }
         }
     }
 
-    private Merchant createMerchantEntity(Map.Entry<UUID, List<TransactionXml>> merchant) {
-        var m = merchant.getValue().get(0).getMerchant();
-        return new Merchant(UUID.fromString(m.getUuid()), m.getName(), m.getDescription(),
-                m.getEmail(), getStatus(m.getStatus()), m.getBankAccountSum(), null);
+    private Merchant createMerchantEntity(MerchantXml merchantXml) {
+        return new Merchant(UUID.fromString(merchantXml.getUuid()), merchantXml.getName(), merchantXml.getDescription(),
+                merchantXml.getEmail(), getStatus(merchantXml.getStatus()), merchantXml.getBankAccountSum(), null);
     }
 
     private static HashMap<UUID, List<TransactionXml>> unionTransactionsByMerchant(TransactionsXml transactionsXml) {
@@ -83,8 +83,8 @@ public class TransactionXmlSave {
         return merchantTransactions;
     }
 
-    private boolean isMerchantActive(int merchantStatus) {
-        return MerchantStatus.ACTIV.ordinal() == merchantStatus;
+    private boolean isMerchantActive(int status) {
+        return MerchantStatus.ACTIV.ordinal() == status;
     }
 
     private MerchantStatus getStatus(int merchantStatus) {

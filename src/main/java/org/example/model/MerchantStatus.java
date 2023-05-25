@@ -1,10 +1,10 @@
 package org.example.model;
 
 public enum MerchantStatus {
-    ACTIV(0), INACTIVE(1);
+    ACTIV(1), INACTIVE(0);
 
-    private final int statusNumber;
-    MerchantStatus(int statusNumber) {
-        this.statusNumber = statusNumber;
+    private final int status;
+    MerchantStatus(int status) {
+        this.status = status;
     }
 }

@@ -32,5 +32,5 @@ VALUES ('d1311ea7-9e43-4847-9529-bcee4031dc7e', 'Maggie', 'for test', 'maggie@gm
        ('dd1afbfd-c15c-4712-5643-7006ab50f3fb', 'Stefan', 'testing fire system', 'peter@gmail.com', '1', 20.10);
 
 INSERT INTO transaction(id, amount, status, customer_email, customer_phone, created_at, reference_id)
-VALUES ('dd1afbfd-56rt-4712-5643-7006ab50f3fb', 321312.00, 'APPROVED', 'someemail@gmail.com', '08776567567', current_timestamp,
+VALUES (gen_random_uuid(), 321312.00, 'APPROVED', 'someemail@gmail.com', '08776567567', current_timestamp,
         'd1311ea7-9e43-4847-9529-bcee4031dc7e')

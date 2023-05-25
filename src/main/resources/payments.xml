@@ -12,7 +12,7 @@
             <name>Jesika</name>
             <description>one transaction with type 'reversal'</description>
             <merchant_email>jesika@gmail.com</merchant_email>
-            <status>0</status>
+            <status>1</status>
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
@@ -28,7 +28,7 @@
             <name>Alex</name>
             <description>one 'approved' with 400,one 'refund' with 200</description>
             <merchant_email>alex@gmail.com</merchant_email>
-            <status>0</status>
+            <status>1</status>
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
@@ -44,7 +44,7 @@
             <name>Alex</name>
             <description>one 'approved' with 400,one 'refund' with 200</description>
             <merchant_email>alex@gmail.com</merchant_email>
-            <status>0</status>
+            <status>1</status>
             <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
@@ -60,7 +60,7 @@
             <name>InactivUser</name>
             <description>this user and elated transaction will be not saved to database</description>
             <merchant_email>inactivUser@gmail.com</merchant_email>
-            <status>1</status>
+            <status>0</status>
             <bankAccountSumMerchant>8000.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
@@ -76,7 +76,7 @@
             <name>InactivUser</name>
             <description>this user and elated transaction will be not saved to database</description>
             <merchant_email>inactivUser@gmail.com</merchant_email>
-            <status>1</status>
+            <status>0</status>
             <bankAccountSumMerchant>8000.00</bankAccountSumMerchant>
         </merchant>
     </transaction>
