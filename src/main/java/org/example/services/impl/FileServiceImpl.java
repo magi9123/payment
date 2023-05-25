@@ -2,6 +2,7 @@ package org.example.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.services.FileService;
+import org.example.xml.ValidationError;
 import org.example.xml.facada.FileFacada;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
@@ -17,7 +18,7 @@ public class FileServiceImpl implements FileService {
     private final FileFacada fileFacada;
 
     @Override
-    public void importFromXml(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
-        fileFacada.saveFileToDatabase(inputStream);
+    public ValidationError importFromXml(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
+        return fileFacada.saveFileToDatabase(inputStream);
     }
 }

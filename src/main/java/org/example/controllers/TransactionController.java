@@ -6,6 +6,7 @@ import org.example.dto.TransactionDto;
 import org.example.mapper.TransactionMapper;
 import org.example.services.FileService;
 import org.example.services.TransactionService;
+import org.example.xml.ValidationError;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,8 +35,7 @@ public class TransactionController {
 
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseDto<Void> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
-        fileService.importFromXml(file.getInputStream());
-        return ResponseDto.response();
+    public ResponseDto<ValidationError> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
+        return ResponseDto.response(fileService.importFromXml(file.getInputStream()));
     }
 }

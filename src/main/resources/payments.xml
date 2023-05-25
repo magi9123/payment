@@ -5,7 +5,7 @@
         <type>1</type>
         <customer id="1">
             <customer_email>stef@gmail.com</customer_email>
-            <phone>08765454658</phone>
+            <phone>+66 2 123 4567</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
         <merchant id="ab54d908-9887-4570-b4e7-e8580c6bd71f">
@@ -21,7 +21,7 @@
         <type>0</type>
         <customer id="2">
             <customer_email>katq@gmail.com</customer_email>
-            <phone>087d6545465</phone>
+            <phone>+1 (212) 555-3456</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
         <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea52">
@@ -37,7 +37,7 @@
         <type>2</type>
         <customer id="2">
             <customer_email>katq@gmail.com</customer_email>
-            <phone>087d6545465</phone>
+            <phone>+65 6396 0605</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
         <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea52">
@@ -53,7 +53,7 @@
         <type>0</type>
         <customer id="2">
             <customer_email>katq@gmail.com</customer_email>
-            <phone>08796545465</phone>
+            <phone>+65 6396 0605</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
         <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea72">
@@ -69,7 +69,7 @@
         <type>2</type>
         <customer id="2">
             <customer_email>katq@gmail.com</customer_email>
-            <phone>08796545465</phone>
+            <phone>+93 30 539-0605</phone>
             <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
         </customer>
         <merchant id="cc7baf88-353c-4249-a74f-c2e45645ea72">
@@ -79,5 +79,21 @@
             <status>0</status>
             <bankAccountSumMerchant>8000.00</bankAccountSumMerchant>
         </merchant>
+        <transaction id="cc7baf88-353c-4249-a74f-c2e46345ea52">
+            <amount>0</amount>
+            <type>0</type>
+            <customer id="1">
+                <customer_email>dimiter@gmail.com</customer_email>
+                <phone>087d65454658</phone>
+                <bankAccountSumCustomer>4800.00</bankAccountSumCustomer>
+            </customer>
+            <merchant id="ab54d908-9887-4570-b4e7-e8580c6bd71f">
+                <name>Jesika</name>
+                <description>wrong phone</description>
+                <merchant_email>jesika@gmail.com</merchant_email>
+                <status>1</status>
+                <bankAccountSumMerchant>5200.00</bankAccountSumMerchant>
+            </merchant>
+        </transaction>
     </transaction>
 </transactions>

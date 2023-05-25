@@ -1,6 +1,7 @@
 package org.example.xml.facada;
 
 import lombok.RequiredArgsConstructor;
+import org.example.xml.ValidationError;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
@@ -15,9 +16,11 @@ public class FileFacada {
     private final TransactionsXmlValidation validation = new TransactionsXmlValidation();
     private final TransactionXmlSave save;
 
-    public void saveFileToDatabase(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
+    public ValidationError saveFileToDatabase(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
         var transactionsXml = read.readXml(inputStream);
         validation.validateXml(transactionsXml);
         save.saveXml(transactionsXml);
+
+        return ValidationError.getValidationError();
     }
 }
