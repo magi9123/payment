@@ -2,8 +2,8 @@ package org.example.xml.facada;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.TransactionStatus;
-import org.example.xml.TransactionXml;
-import org.example.xml.TransactionsXml;
+import org.example.xml.parser.TransactionXml;
+import org.example.xml.parser.TransactionsXml;
 
 import java.util.regex.Pattern;
 

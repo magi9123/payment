@@ -1,6 +1,10 @@
 package org.example.xml;
 
 import lombok.Getter;
+import org.example.xml.parser.CustomerXml;
+import org.example.xml.parser.MerchantXml;
+import org.example.xml.parser.TransactionXml;
+import org.example.xml.parser.TransactionsXml;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -8,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.xml.ElementXml.*;
+import static org.example.xml.parser.ElementXml.*;
 
 public class TransactionHandler extends DefaultHandler {
 

@@ -6,8 +6,8 @@ import org.example.model.MerchantStatus;
 import org.example.model.Transaction;
 import org.example.model.TransactionStatus;
 import org.example.repositories.MerchantRepository;
-import org.example.xml.TransactionXml;
-import org.example.xml.TransactionsXml;
+import org.example.xml.parser.TransactionXml;
+import org.example.xml.parser.TransactionsXml;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

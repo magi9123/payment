@@ -1,7 +1,7 @@
 package org.example.xml.facada;
 
 import org.example.xml.TransactionHandler;
-import org.example.xml.TransactionsXml;
+import org.example.xml.parser.TransactionsXml;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

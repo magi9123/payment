@@ -1,4 +1,4 @@
-package org.example.xml;
+package org.example.xml.parser;
 
 public final class ElementXml {
     public static final String TRANSACTIONS = "transactions";

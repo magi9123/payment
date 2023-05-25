@@ -1,4 +1,4 @@
-package org.example.xml;
+package org.example.xml.parser;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
