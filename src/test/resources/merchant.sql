@@ -4,14 +4,14 @@ CREATE TABLE IF NOT EXISTS merchant
     name                  varchar(100) not null,
     description           varchar(255),
     email                 varchar(50),
-    status                bit default '0',
+    status                int default 0,
     total_transaction_Sum numeric(20, 5),
     CONSTRAINT pkey_merchant_id PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS transaction
 (
-    id           uuid,
+    id             uuid,
     amount         numeric(20, 5),
     status         varchar(10),
     customer_email varchar(50),
@@ -28,5 +28,5 @@ VALUES ('d1311ea7-9e43-4847-9529-bcee4031dc7e', 'Maggie', 'for test', 'maggie@gm
        ('dd1afbfd-c15c-4712-5643-7006ab50f3fb', 'Stefan', 'testing fire system', 'peter@gmail.com', '1', 20.10);
 
 INSERT INTO transaction(id, amount, status, customer_email, customer_phone, created_at, reference_id)
-VALUES ('dd1afbfd-56rt-4712-5643-7006ab50f3fb', 321312.00, 'APPROVED', 'someemail@gmail.com', '08776567567', current_timestamp,
-        'd1311ea7-9e43-4847-9529-bcee4031dc7e')
+VALUES (gen_random_uuid(), 321312.00, 'APPROVED', 'someemail@gmail.com', '08776567567',
+        current_timestamp, 'd1311ea7-9e43-4847-9529-bcee4031dc7e')

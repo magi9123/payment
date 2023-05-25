@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS merchant
     name                  varchar(100) not null,
     description           varchar(255),
     email                 varchar(50),
-    status                bit default '0',
+    status                int default 0,
     total_transaction_Sum numeric(20, 5),
     CONSTRAINT pkey_merchant_id PRIMARY KEY (id)
 );
