@@ -6,6 +6,7 @@ import org.example.infrastructure.exception.ErrorCode;
 import org.example.model.Merchant;
 import org.example.model.Transaction;
 import org.example.repositories.MerchantRepository;
+import org.example.services.MerchantService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class MerchantServiceImpl implements org.example.services.MerchantService {
+public class MerchantServiceImpl implements MerchantService {
 
     private final MerchantRepository merchantRepository;
 
