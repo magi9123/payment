@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class MerchantDtoTest {
-
     public static MerchantDto create(UUID uuid) {
-
         return new MerchantDto(uuid, "Katq", "desc", "test@email.com", MerchantStatus.ACTIV,
                 BigDecimal.ONE, List.of(new TransactionDto()));
     }

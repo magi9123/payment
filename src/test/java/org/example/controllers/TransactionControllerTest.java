@@ -1,9 +1,7 @@
 package org.example.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.mapper.TransactionMapper;
-import org.example.services.impl.MerchantServiceImpl;
 import org.example.services.impl.TransactionServiceImpl;
 import org.example.testtools.TransactionDtoTest;
 import org.example.testtools.TransactionTest;
@@ -20,8 +18,8 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest

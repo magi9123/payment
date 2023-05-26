@@ -87,7 +87,7 @@ class MerchantControllerTest {
         when(merchantMapper.toDto(MerchantTest.create(ID))).thenReturn(merchant);
         String json = mapper.writeValueAsString(merchant);
 
-        mockMvc.perform(delete(MerchantController.BASE)
+        mockMvc.perform(delete(MerchantController.BASE + "/" + ID)
                         .content(json)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class TransactionTest {
     public static Transaction create(UUID uuid) {
-        return new Transaction(uuid,BigDecimal.ONE,TransactionStatus.APPROVED,"some@gmail.com",""
-                ,LocalDateTime.now(),new Merchant());
+        return new Transaction(uuid, BigDecimal.ONE, TransactionStatus.APPROVED,"some@gmail.com",""
+                , LocalDateTime.now(),new Merchant());
     }
 }
