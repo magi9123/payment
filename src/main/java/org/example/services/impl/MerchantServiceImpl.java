@@ -24,6 +24,11 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
+    public Merchant createMerchant(Merchant entity) {
+        return merchantRepository.save(entity);
+    }
+
+    @Override
     public Merchant updateMerchant(Merchant merchant) throws CodedException {
         if (merchantRepository.existsById(merchant.getId())) {
             return merchantRepository.save(merchant);

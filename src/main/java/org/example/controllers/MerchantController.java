@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.example.dto.MerchantCreateDto;
 import org.example.dto.MerchantDto;
 import org.example.dto.ResponseDto;
 import org.example.infrastructure.exception.CodedException;
@@ -8,6 +9,7 @@ import org.example.mapper.MerchantMapper;
 import org.example.services.MerchantService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +29,11 @@ public class MerchantController {
         return ResponseDto.response(mapper.toDtos(merchantService.findAllMerchants()));
     }
 
+    @PostMapping
+    public ResponseDto<MerchantDto> createMerchant(@Valid @RequestBody MerchantCreateDto merchantDto) {
+        var merchant = merchantService.createMerchant(mapper.createDtoToEntity(merchantDto));
+        return ResponseDto.response(mapper.toDto(merchant));
+    }
 
     @PutMapping
     public ResponseDto<MerchantDto> updateMerchant(@RequestBody MerchantDto merchantDto) throws CodedException {

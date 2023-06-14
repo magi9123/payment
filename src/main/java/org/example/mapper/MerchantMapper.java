@@ -2,6 +2,7 @@ package org.example.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.example.dto.MerchantCreateDto;
 import org.example.dto.MerchantDto;
 import org.example.model.Merchant;
 import org.springframework.stereotype.Component;
@@ -27,4 +28,7 @@ public class MerchantMapper {
         return mapper.convertValue(merchantDto, Merchant.class);
     }
 
+    public Merchant createDtoToEntity(MerchantCreateDto merchantDto) {
+        return mapper.convertValue(merchantDto, Merchant.class);
+    }
 }

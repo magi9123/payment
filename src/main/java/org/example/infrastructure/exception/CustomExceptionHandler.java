@@ -3,15 +3,21 @@ package org.example.infrastructure.exception;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.ResponseDto;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -30,6 +36,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ResponseDto<Void>> handlerGeneralException(Exception ex) {
         log.error(ex.getMessage(), ex);
         return getResponse(HttpStatus.INTERNAL_SERVER_ERROR, ResponseDto.fail(ErrorCode.SERVER_ERROR.getCode(), ex.getMessage()));
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        String fieldErrors = ex.getBindingResult().getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        return handleExceptionInternal(ex, "Something goes wrong check:" + System.lineSeparator() + fieldErrors, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     private ResponseEntity<ResponseDto<Void>> getResponse(HttpStatus status, ResponseDto<Void> content) {

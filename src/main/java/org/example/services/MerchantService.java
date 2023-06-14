@@ -13,4 +13,6 @@ public interface MerchantService {
     Merchant updateMerchant(Merchant entity) throws CodedException;
 
     Merchant deleteMerchant(UUID id) throws CodedException;
+
+    Merchant createMerchant(Merchant entity);
 }
