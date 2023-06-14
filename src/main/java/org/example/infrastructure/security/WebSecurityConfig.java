@@ -1,6 +1,7 @@
 package org.example.infrastructure.security;
 
 import lombok.RequiredArgsConstructor;
+import org.example.model.RoleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,7 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
+                .authorizeRequests().antMatchers("/authenticate").permitAll()
+                .antMatchers("/api/payment_system/transaction/**").hasRole(RoleType.ADMIN.name())
+                .antMatchers(HttpMethod.OPTIONS, "/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

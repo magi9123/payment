@@ -13,9 +13,24 @@ CREATE TABLE IF NOT EXISTS merchant
     CONSTRAINT pkey_merchant_id PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS users
+(
+    id           uuid not null ,
+    name         varchar(50),
+    password     text,
+    CONSTRAINT pkey_user_id PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS role
+(
+    id           uuid not null ,
+    name         varchar(50),
+    CONSTRAINT pkey_role_id PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS transaction
 (
-    id           uuid,
+    id             uuid,
     amount         numeric(20, 5),
     status         varchar(10),
     customer_email varchar(50),
@@ -26,6 +41,19 @@ CREATE TABLE IF NOT EXISTS transaction
     CONSTRAINT fk_transactionMenchant FOREIGN KEY (reference_id) REFERENCES merchant (id)
 );
 
+INSERT INTO role(id, name)
+VALUES('1','ROLE_ADMIN'),
+      ('2','ROLE_USER');
+
+INSERT INTO users(id, name, password)
+VALUES ('1','maggie','$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi'),
+       ('2','hilp','$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi');
+
+INSERT INTO users_roles(user_id, role_id)
+VALUES ('1','1'),
+       ('1','2'),
+       ('2','2');
+
 INSERT INTO merchant(id, name, description, email, status, total_Transaction_Sum)
 VALUES ('d1311ea7-9e43-4847-9529-bcee4031dc7e', 'Maggie', 'for test', 'maggie@gmail.com', '0', 1434324123.8787),
        ('dd1afbfd-c15c-4712-a2d2-7006ab50f3fb', 'Siri', 'testing', 'siri@gmail.com', '0', 4343134123213.7767),
@@ -34,3 +62,4 @@ VALUES ('d1311ea7-9e43-4847-9529-bcee4031dc7e', 'Maggie', 'for test', 'maggie@gm
 INSERT INTO transaction(id, amount, status, customer_email, customer_phone, created_at, reference_id)
 VALUES (gen_random_uuid(), 321312.00, 'APPROVED', 'someemail@gmail.com', '08776567567', current_timestamp,
         'd1311ea7-9e43-4847-9529-bcee4031dc7e')
+
