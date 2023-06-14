@@ -3,6 +3,7 @@ package org.example.controllers;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.ResponseDto;
 import org.example.dto.TransactionDto;
+import org.example.infrastructure.exception.CodedException;
 import org.example.mapper.TransactionMapper;
 import org.example.services.FileService;
 import org.example.services.TransactionService;
@@ -15,6 +16,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -37,5 +39,10 @@ public class TransactionController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseDto<ValidationError> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
         return ResponseDto.response(fileService.importFromXml(file.getInputStream()));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseDto<TransactionDto> deleteMerchant(@PathVariable("id") String id) throws CodedException {
+        return ResponseDto.response(mapper.toDto(transactionService.deleteTransaction(UUID.fromString(id))));
     }
 }

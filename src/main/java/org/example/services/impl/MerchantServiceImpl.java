@@ -29,12 +29,12 @@ public class MerchantServiceImpl implements MerchantService {
             return merchantRepository.save(merchant);
         }
 
-        throw new CodedException(ErrorCode.ENTITY_NOT_FOUND, merchant.getId());
+        throw new CodedException(ErrorCode.MERCHAT_NOT_FOUND, merchant.getId());
     }
 
     @Override
     public Merchant deleteMerchant(UUID id) throws CodedException {
-        Merchant merchant = merchantRepository.findById(id).orElseThrow(() -> new CodedException(ErrorCode.ENTITY_NOT_FOUND, id));
+        Merchant merchant = merchantRepository.findById(id).orElseThrow(() -> new CodedException(ErrorCode.MERCHAT_NOT_FOUND, id));
 
         checkHasRelatedTransaction(id, merchant.getTransactionList());
 
