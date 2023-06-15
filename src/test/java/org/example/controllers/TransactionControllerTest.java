@@ -38,7 +38,7 @@ class TransactionControllerTest {
     private TransactionMapper transactionMapper;
 
     @Test
-    @WithMockUser
+    @WithMockUser(roles = "ADMIN")
     void shouldGetAllTransactions() throws Exception {
         var uuid = UUID.randomUUID();
         var transactionList = List.of(TransactionTest.create(uuid));
