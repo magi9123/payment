@@ -1,6 +1,6 @@
 package org.example.xml.parser;
 
-public final class ElementXml {
+public final class ElementParser {
     public static final String TRANSACTIONS = "transactions";
     public static final String TRANSACTION = "transaction";
     public static final String CUSTOMER = "customer";

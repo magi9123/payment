@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class CustomerXml {
+public class CustomerParser {
     private String email;
     private String phone;
     private BigDecimal bankAccountSum;

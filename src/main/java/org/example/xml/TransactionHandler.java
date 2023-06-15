@@ -1,10 +1,10 @@
 package org.example.xml;
 
 import lombok.Getter;
-import org.example.xml.parser.CustomerXml;
-import org.example.xml.parser.MerchantXml;
-import org.example.xml.parser.TransactionXml;
-import org.example.xml.parser.TransactionsXml;
+import org.example.xml.parser.CustomerParser;
+import org.example.xml.parser.MerchantParser;
+import org.example.xml.parser.TransactionParser;
+import org.example.xml.parser.TransactionsParser;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -12,13 +12,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.xml.parser.ElementXml.*;
+import static org.example.xml.parser.ElementParser.*;
 
 public class TransactionHandler extends DefaultHandler {
 
     @Getter
-    private TransactionsXml transactionsXml;
-    private TransactionXml transactionXml;
+    private TransactionsParser transactionsParser;
+    private TransactionParser transactionParser;
 
     private StringBuilder elementValue;
 
@@ -33,20 +33,20 @@ public class TransactionHandler extends DefaultHandler {
 
     @Override
     public void startDocument() {
-        transactionsXml = new TransactionsXml();
+        transactionsParser = new TransactionsParser();
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
         switch (qName) {
             case TRANSACTIONS:
-                transactionsXml.setArticleList(new ArrayList<>());
+                transactionsParser.setArticleList(new ArrayList<>());
                 break;
             case TRANSACTION:
                 initTransaction(attributes);
                 break;
             case CUSTOMER:
-                transactionXml.setCustomer(new CustomerXml());
+                transactionParser.setCustomer(new CustomerParser());
                 break;
             case MERCHANT:
                 initMerchant(attributes);
@@ -106,20 +106,20 @@ public class TransactionHandler extends DefaultHandler {
         }
     }
 
-    private TransactionXml latestArticle() {
-        List<TransactionXml> articleList = transactionsXml.getArticleList();
+    private TransactionParser latestArticle() {
+        List<TransactionParser> articleList = transactionsParser.getArticleList();
         int latestArticleIndex = articleList.size() - 1;
         return articleList.get(latestArticleIndex);
     }
 
     private void initMerchant(Attributes attributes) {
-        transactionXml.setMerchant(new MerchantXml());
-        transactionXml.getMerchant().setUuid(attributes.getValue(0));
+        transactionParser.setMerchant(new MerchantParser());
+        transactionParser.getMerchant().setUuid(attributes.getValue(0));
     }
 
     private void initTransaction(Attributes attributes) {
-        transactionXml = new TransactionXml();
-        transactionsXml.getArticleList().add(transactionXml);
-        transactionXml.setUuid(attributes.getValue(0));
+        transactionParser = new TransactionParser();
+        transactionsParser.getArticleList().add(transactionParser);
+        transactionParser.setUuid(attributes.getValue(0));
     }
 }

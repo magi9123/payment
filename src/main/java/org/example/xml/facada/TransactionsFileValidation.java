@@ -3,22 +3,22 @@ package org.example.xml.facada;
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.TransactionStatus;
 import org.example.xml.ValidationError;
-import org.example.xml.parser.TransactionXml;
-import org.example.xml.parser.TransactionsXml;
+import org.example.xml.parser.TransactionParser;
+import org.example.xml.parser.TransactionsParser;
 
 import java.util.regex.Pattern;
 
 @Slf4j
-public class TransactionsXmlValidation {
+public class TransactionsFileValidation {
     public static final String REGEX_EMAIL = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     public static final String REGEX_PHONE = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
 
     private static final String REGEX_UUID = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
 
-    public void validateXml(TransactionsXml transactionsXml) {
+    public void validateData(TransactionsParser transactionsParser) {
         ValidationError.getValidationError().clearMessages();
 
-        for (var transaction : transactionsXml.getArticleList()) {
+        for (var transaction : transactionsParser.getArticleList()) {
 
             transactionHasAmount(transaction);
 
@@ -35,7 +35,7 @@ public class TransactionsXmlValidation {
 
     }
 
-    private void transactionHasAmount(TransactionXml transaction) {
+    private void transactionHasAmount(TransactionParser transaction) {
         if (transaction.getAmount().signum() <= 0) {
             transaction.setType(TransactionStatus.REVERSED.ordinal());
             ValidationError.getValidationError().setError("Change status 'reversed' for transaction - " + transaction.getUuid());

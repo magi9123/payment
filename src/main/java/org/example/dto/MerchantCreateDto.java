@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.model.MerchantStatus;
-import org.example.xml.facada.TransactionsXmlValidation;
+import org.example.xml.facada.TransactionsFileValidation;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,7 +22,7 @@ public class MerchantCreateDto {
 
     private String description;
 
-    @Email(message = "Email is not valid", regexp = TransactionsXmlValidation.REGEX_EMAIL)
+    @Email(message = "Email is not valid", regexp = TransactionsFileValidation.REGEX_EMAIL)
     @NotBlank(message = "Email is required")
     private String email;
 

@@ -9,6 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TransactionsXml {
-    private List<TransactionXml> articleList;
+public class TransactionsParser {
+    private List<TransactionParser> articleList;
 }

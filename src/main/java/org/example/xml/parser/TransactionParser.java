@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TransactionXml {
+public class TransactionParser {
     private String uuid;
     private BigDecimal amount;
     private int type;
-    private CustomerXml customer;
-    private MerchantXml merchant;
+    private CustomerParser customer;
+    private MerchantParser merchant;
 }

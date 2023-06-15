@@ -6,9 +6,9 @@ import org.example.model.MerchantStatus;
 import org.example.model.Transaction;
 import org.example.model.TransactionStatus;
 import org.example.repositories.MerchantRepository;
-import org.example.xml.parser.MerchantXml;
-import org.example.xml.parser.TransactionXml;
-import org.example.xml.parser.TransactionsXml;
+import org.example.xml.parser.MerchantParser;
+import org.example.xml.parser.TransactionParser;
+import org.example.xml.parser.TransactionsParser;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -19,12 +19,12 @@ import static org.example.model.TransactionStatus.*;
 
 @Component
 @RequiredArgsConstructor
-public class TransactionXmlSave {
+public class TransactionsFileSave {
     private final MerchantRepository merchantRepository;
 
-    public void saveXml(TransactionsXml transactionsXml) {
+    public void saveData(TransactionsParser transactionsParser) {
 
-        HashMap<UUID, List<TransactionXml>> merchantTransactionsList = unionTransactionsByMerchant(transactionsXml);
+        HashMap<UUID, List<TransactionParser>> merchantTransactionsList = unionTransactionsByMerchant(transactionsParser);
 
         for (var merchantTransactions : merchantTransactionsList.entrySet()) {
 
@@ -67,15 +67,15 @@ public class TransactionXmlSave {
         }
     }
 
-    private Merchant createMerchantEntity(MerchantXml merchantXml) {
-        return new Merchant(UUID.fromString(merchantXml.getUuid()), merchantXml.getName(), merchantXml.getDescription(),
-                merchantXml.getEmail(), getStatus(merchantXml.getStatus()), merchantXml.getBankAccountSum(), null);
+    private Merchant createMerchantEntity(MerchantParser merchantParser) {
+        return new Merchant(UUID.fromString(merchantParser.getUuid()), merchantParser.getName(), merchantParser.getDescription(),
+                merchantParser.getEmail(), getStatus(merchantParser.getStatus()), merchantParser.getBankAccountSum(), null);
     }
 
-    private static HashMap<UUID, List<TransactionXml>> unionTransactionsByMerchant(TransactionsXml transactionsXml) {
-        var merchantTransactions = new HashMap<UUID, List<TransactionXml>>();
+    private static HashMap<UUID, List<TransactionParser>> unionTransactionsByMerchant(TransactionsParser transactionsParser) {
+        var merchantTransactions = new HashMap<UUID, List<TransactionParser>>();
 
-        for (var transactionXml : transactionsXml.getArticleList()) {
+        for (var transactionXml : transactionsParser.getArticleList()) {
             var uuid = UUID.fromString(transactionXml.getMerchant().getUuid());
             merchantTransactions.putIfAbsent(uuid, new ArrayList<>());
             merchantTransactions.get(uuid).add(transactionXml);
@@ -91,19 +91,19 @@ public class TransactionXmlSave {
         return MerchantStatus.ACTIV.ordinal() == merchantStatus ? MerchantStatus.ACTIV : MerchantStatus.INACTIVE;
     }
 
-    private BigDecimal calculateAccountsBalanceForRefunded(BigDecimal accountBalance, TransactionXml transaction) {
+    private BigDecimal calculateAccountsBalanceForRefunded(BigDecimal accountBalance, TransactionParser transaction) {
         accountBalance = accountBalance.subtract(transaction.getAmount());
         transaction.getCustomer().getBankAccountSum().add(transaction.getAmount());//fake
         return accountBalance;
     }
 
-    private BigDecimal calculateAccountsBalanceForApproved(BigDecimal accountBalance, TransactionXml transaction) {
+    private BigDecimal calculateAccountsBalanceForApproved(BigDecimal accountBalance, TransactionParser transaction) {
         accountBalance = accountBalance.add(transaction.getAmount());
         transaction.getCustomer().getBankAccountSum().subtract(transaction.getAmount());//fake
         return accountBalance;
     }
 
-    private static void addTransactionToMerchant(TransactionXml transaction, TransactionStatus status, Merchant merchant, ArrayList<Transaction> transactionList) {
+    private static void addTransactionToMerchant(TransactionParser transaction, TransactionStatus status, Merchant merchant, ArrayList<Transaction> transactionList) {
         Transaction transactionEntity = new Transaction(UUID.fromString(transaction.getUuid()), transaction.getAmount(),
                 status, transaction.getCustomer().getEmail(),
                 transaction.getCustomer().getPhone(), LocalDateTime.now(), merchant);

@@ -37,8 +37,8 @@ public class TransactionController {
 
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseDto<ValidationError> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
-        return ResponseDto.response(fileService.importFromXml(file.getInputStream()));
+    public ResponseDto<ValidationError> uploadTransactions(@RequestPart MultipartFile file) throws IOException, ParserConfigurationException, SAXException, CodedException {
+        return ResponseDto.response(fileService.importFile(file));
     }
 
     @DeleteMapping("/{id}")
