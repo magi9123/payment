@@ -55,6 +55,7 @@ dependencies {
     implementation "commons-io:commons-io:2.11.0"
 
     implementation "javax.xml.parsers:jaxp-api:${jaxpVersion}"
+    implementation "com.opencsv:opencsv:5.7.0"
 
     runtimeOnly "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
     runtimeOnly "org.postgresql:postgresql:${postgresVersion}"
