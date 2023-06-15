@@ -40,14 +40,24 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        String fieldErrors = ex.getBindingResult().getFieldErrors().stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.joining(System.lineSeparator()));
+        String errors = getErrors(ex);
 
-        return handleExceptionInternal(ex, "Something goes wrong check:" + System.lineSeparator() + fieldErrors, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
+                .body(ResponseDto.fail(ErrorCode.BAD_REQUEST.getCode(), errors));
     }
 
     private ResponseEntity<ResponseDto<Void>> getResponse(HttpStatus status, ResponseDto<Void> content) {
         return ResponseEntity.status(status).contentType(MediaType.APPLICATION_JSON).body(content);
+    }
+
+    private String getErrors(MethodArgumentNotValidException ex) {
+        String fieldErrors = ex.getBindingResult().getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        StringBuilder errors = new StringBuilder();
+        errors.append("Something goes wrong check:").append(System.lineSeparator()).append(fieldErrors);
+
+        return errors.toString();
     }
 }
