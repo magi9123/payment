@@ -1,4 +1,4 @@
-package org.example.xml.parser;
+package org.example.file.parser;
 
 import lombok.Getter;
 import lombok.Setter;

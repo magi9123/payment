@@ -1,10 +1,10 @@
-package org.example.xml;
+package org.example.file;
 
 import lombok.Getter;
-import org.example.xml.parser.CustomerParser;
-import org.example.xml.parser.MerchantParser;
-import org.example.xml.parser.TransactionParser;
-import org.example.xml.parser.TransactionsParser;
+import org.example.file.parser.CustomerParser;
+import org.example.file.parser.MerchantParser;
+import org.example.file.parser.TransactionParser;
+import org.example.file.parser.TransactionsParser;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.xml.parser.ElementParser.*;
+import static org.example.file.parser.ElementParser.*;
 
 public class TransactionHandler extends DefaultHandler {
 

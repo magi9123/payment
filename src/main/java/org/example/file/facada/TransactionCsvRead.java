@@ -1,7 +1,7 @@
-package org.example.xml.facada;
+package org.example.file.facada;
 
 import com.opencsv.bean.CsvToBeanBuilder;
-import org.example.xml.csv.TransactionCsv;
+import org.example.file.csv.TransactionCsv;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

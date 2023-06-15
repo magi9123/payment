@@ -1,13 +1,13 @@
-package org.example.xml.facada;
+package org.example.file.facada;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.example.infrastructure.exception.CodedException;
 import org.example.infrastructure.exception.ErrorCode;
-import org.example.xml.ValidationError;
-import org.example.xml.csv.TransactionCsv;
-import org.example.xml.parser.TransactionParser;
-import org.example.xml.parser.TransactionsParser;
+import org.example.file.ValidationError;
+import org.example.file.csv.TransactionCsv;
+import org.example.file.parser.TransactionParser;
+import org.example.file.parser.TransactionsParser;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;

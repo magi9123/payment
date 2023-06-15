@@ -1,4 +1,4 @@
-package org.example.xml.facada;
+package org.example.file.facada;
 
 import lombok.RequiredArgsConstructor;
 import org.example.model.Merchant;
@@ -6,9 +6,9 @@ import org.example.model.MerchantStatus;
 import org.example.model.Transaction;
 import org.example.model.TransactionStatus;
 import org.example.repositories.MerchantRepository;
-import org.example.xml.parser.MerchantParser;
-import org.example.xml.parser.TransactionParser;
-import org.example.xml.parser.TransactionsParser;
+import org.example.file.parser.MerchantParser;
+import org.example.file.parser.TransactionParser;
+import org.example.file.parser.TransactionsParser;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

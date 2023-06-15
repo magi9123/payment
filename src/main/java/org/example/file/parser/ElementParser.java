@@ -1,4 +1,4 @@
-package org.example.xml.parser;
+package org.example.file.parser;
 
 public final class ElementParser {
     public static final String TRANSACTIONS = "transactions";

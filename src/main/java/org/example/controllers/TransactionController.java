@@ -7,7 +7,7 @@ import org.example.infrastructure.exception.CodedException;
 import org.example.mapper.TransactionMapper;
 import org.example.services.FileService;
 import org.example.services.TransactionService;
-import org.example.xml.ValidationError;
+import org.example.file.ValidationError;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

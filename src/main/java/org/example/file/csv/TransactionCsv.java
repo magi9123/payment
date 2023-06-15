@@ -1,4 +1,4 @@
-package org.example.xml.csv;
+package org.example.file.csv;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvRecurse;

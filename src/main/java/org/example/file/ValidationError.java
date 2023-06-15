@@ -1,4 +1,4 @@
-package org.example.xml;
+package org.example.file;
 
 import lombok.Getter;
 

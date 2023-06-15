@@ -1,10 +1,10 @@
-package org.example.xml.facada;
+package org.example.file.facada;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.TransactionStatus;
-import org.example.xml.ValidationError;
-import org.example.xml.parser.TransactionParser;
-import org.example.xml.parser.TransactionsParser;
+import org.example.file.ValidationError;
+import org.example.file.parser.TransactionParser;
+import org.example.file.parser.TransactionsParser;
 
 import java.util.regex.Pattern;
 

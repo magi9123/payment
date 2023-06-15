@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.model.MerchantStatus;
-import org.example.xml.facada.TransactionsFileValidation;
+import org.example.file.facada.TransactionsFileValidation;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

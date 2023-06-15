@@ -1,7 +1,7 @@
 package org.example.services;
 
 import org.example.infrastructure.exception.CodedException;
-import org.example.xml.ValidationError;
+import org.example.file.ValidationError;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 
