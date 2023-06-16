@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Configuration
@@ -20,14 +19,9 @@ public class TransactionSchedule {
 
     @Scheduled(cron = "0 0 0/1 * * ?")
     public void deleteTransaction() {
-        var transactions = transactionRepository.findAll();
+        var transactions = transactionRepository.findAllByCreatedAtBefore(LocalDateTime.now().minusHours(1));
+        transactionRepository.deleteAll(transactions);
 
-        var transactionDel = transactions.stream()
-                .filter(transaction -> transaction.getCreatedAt().isBefore(LocalDateTime.now().minusHours(1)))
-                .collect(Collectors.toList());
-
-        transactionRepository.deleteAll(transactionDel);
-
-        log.info("Deleted transaction are " + transactionDel.size());
+        log.info("Deleted transaction are " + transactions.size());
     }
 }
