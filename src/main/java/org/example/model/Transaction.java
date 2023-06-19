@@ -37,6 +37,9 @@ public class Transaction {
     @Column
     private LocalDateTime createdAt;
 
+    @OneToOne
+    private Transaction nextTransaction;
+
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "reference_id", nullable = false)

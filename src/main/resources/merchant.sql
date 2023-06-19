@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS merchant
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id           uuid not null ,
+    id           int not null ,
     name         varchar(50),
     password     text,
     CONSTRAINT pkey_user_id PRIMARY KEY (id)
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS role
 (
-    id           uuid not null ,
+    id           int not null ,
     name         varchar(50),
     CONSTRAINT pkey_role_id PRIMARY KEY (id)
 );
@@ -36,18 +36,19 @@ CREATE TABLE IF NOT EXISTS transaction
     customer_email varchar(50),
     customer_phone varchar(17),
     created_at     timestamp without time zone,
+    next_transaction uuid references transaction(id),
     reference_id   uuid,
     CONSTRAINT pkey_transaction_id PRIMARY KEY (id),
     CONSTRAINT fk_transactionMenchant FOREIGN KEY (reference_id) REFERENCES merchant (id)
 );
 
 INSERT INTO role(id, name)
-VALUES('1','ROLE_ADMIN'),
-      ('2','ROLE_USER');
+VALUES(1,'ROLE_ADMIN'),
+      (2,'ROLE_USER');
 
 INSERT INTO users(id, name, password)
-VALUES ('1','maggie','$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi'),
-       ('2','hilp','$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi');
+VALUES (1,'maggie','$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi'),
+       (2,'hilp','$2a$10$ixlPY3AAd4ty1l6E2IsQ9OFZi2ba9ZQE0bP7RFcGIWNhyFrrT3YUi');
 
 INSERT INTO users_roles(user_id, role_id)
 VALUES ('1','1'),

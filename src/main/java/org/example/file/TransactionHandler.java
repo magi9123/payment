@@ -59,6 +59,7 @@ public class TransactionHandler extends DefaultHandler {
             case DESCRIPTION:
             case MERCHANT_EMAIL:
             case STATUS:
+            case REFERENCE_TRANSACTION:
             case BANK_ACCOUNT_SUM_CUSTOMER:
             case BANK_ACCOUNT_SUM_MERCHANT:
                 elementValue = new StringBuilder();
@@ -76,6 +77,9 @@ public class TransactionHandler extends DefaultHandler {
                 break;
             case TYPE:
                 latestArticle().setType(Integer.parseInt(elementValue.toString()));
+                break;
+            case REFERENCE_TRANSACTION:
+                latestArticle().setReferenceTransaction(elementValue.toString());
                 break;
             case CUSTOMER_EMAIL:
                 latestArticle().getCustomer().setEmail(elementValue.toString());

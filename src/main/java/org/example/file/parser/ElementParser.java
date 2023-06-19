@@ -1,6 +1,8 @@
 package org.example.file.parser;
 
 public final class ElementParser {
+    private ElementParser(){}
+
     public static final String TRANSACTIONS = "transactions";
     public static final String TRANSACTION = "transaction";
     public static final String CUSTOMER = "customer";
@@ -13,6 +15,7 @@ public final class ElementParser {
     public static final String DESCRIPTION = "description";
     public static final String MERCHANT_EMAIL = "merchant_email";
     public static final String STATUS = "status";
+    public static final String REFERENCE_TRANSACTION = "referenceTransaction";
     public static final String BANK_ACCOUNT_SUM_CUSTOMER = "bankAccountSumCustomer";
     public static final String BANK_ACCOUNT_SUM_MERCHANT = "bankAccountSumMerchant";
 }

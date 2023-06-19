@@ -106,7 +106,7 @@ public class TransactionsFileSave {
     private static void addTransactionToMerchant(TransactionParser transaction, TransactionStatus status, Merchant merchant, ArrayList<Transaction> transactionList) {
         Transaction transactionEntity = new Transaction(UUID.fromString(transaction.getUuid()), transaction.getAmount(),
                 status, transaction.getCustomer().getEmail(),
-                transaction.getCustomer().getPhone(), LocalDateTime.now(), merchant);
+                transaction.getCustomer().getPhone(), LocalDateTime.now(),null, merchant);
 
         transactionList.add(transactionEntity);
     }

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class TransactionParser {
     private String uuid;
+    private String referenceTransaction;
     private BigDecimal amount;
     private int type;
     private CustomerParser customer;

@@ -2,6 +2,7 @@ package org.example.dto;
 
 import lombok.*;
 import org.example.model.Merchant;
+import org.example.model.Transaction;
 import org.example.model.TransactionStatus;
 
 
@@ -19,5 +20,6 @@ public class TransactionDto {
     private String customerEmail;
     private String customerPhone;
     private LocalDateTime createAt;
+    private Transaction nextTransaction;
     private Merchant referenceId;
 }
