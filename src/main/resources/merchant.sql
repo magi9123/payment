@@ -28,6 +28,14 @@ CREATE TABLE IF NOT EXISTS role
     CONSTRAINT pkey_role_id PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS users_roles
+(
+  user_id int not null,
+  role_id int not null,
+  CONSTRAINT fk_usersRolesUserId FOREIGN KEY(user_id) REFERENCES users(id),
+  CONSTRAINT fk_usersRolesRoleId FOREIGN KEY(role_id) REFERENCES role(id)
+);
+
 CREATE TABLE IF NOT EXISTS transaction
 (
     id             uuid,
